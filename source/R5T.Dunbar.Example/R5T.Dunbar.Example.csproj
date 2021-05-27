@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\R5T.Ostrogothia.Rivet.Private\source\R5T.Ostrogothia.Rivet\R5T.Ostrogothia.Rivet.csproj" />
+    <ProjectReference Include="..\..\..\R5T.Plymouth\source\R5T.Plymouth.ProgramAsAService\R5T.Plymouth.ProgramAsAService.csproj" />
+    <ProjectReference Include="..\R5T.Dunbar.A001\R5T.Dunbar.A001.csproj" />
+    <ProjectReference Include="..\R5T.Dunbar.D006.Default\R5T.Dunbar.D006.Default.csproj" />
+    <ProjectReference Include="..\R5T.Dunbar.D007.Default\R5T.Dunbar.D007.Default.csproj" />
+    <ProjectReference Include="..\R5T.Dunbar.Example.DatabaseConnectionConfiguration\R5T.Dunbar.Example.DatabaseConnectionConfiguration.csproj" />
+    <ProjectReference Include="..\R5T.Dunbar.Example.Database\R5T.Dunbar.Example.Database.csproj" />
+    <ProjectReference Include="..\R5T.Dunbar.Example.Repository.Database\R5T.Dunbar.Example.Repository.Database.csproj" />
+  </ItemGroup>
+
+</Project>

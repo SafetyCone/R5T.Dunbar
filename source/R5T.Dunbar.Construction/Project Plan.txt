@@ -1,4 +1,35 @@
 R5T.Dunbar.Construction - A construction console-app for the library R5T.Dunbar.
 
+
+
 Goals
 
+
+R5T.Dunbar libraries:
+
+Repository - DbContextBasedRepositoryBase types library.
+
+T001 - Database connection configuration files names.
+T002 - Raw configuration types for database connection configuration.
+T003 - Single object raw database connection configuration type.
+T004 - Configuration section names.
+T005 - Strong types for an IConnectionStringProvider.
+T006 - Database connection configuration related strong types.
+T007 - Single object strongly-typed configuration database connection configuration type.
+
+D001 - Database connection configuration JSON file path related services.
+D002 - IDatabaseConnectionConfigurationProvider (stringly-typed) service for an T003 raw database connection configuration.
+D003 - IDatabaseConnectionConfigurationProvider (strongly-typed) provider for an T007 strongly-typed database connection configuration.
+D004 - IConnectionStringProvider, parameterless, stringly-typed service.
+D005 - IConnectionStringProvider, parameterized by database name, stringly-typed service.
+D006 - Parameterless IDbContextConstructor related services.
+D007 - Database-named IDbContextConstructor related services.
+
+D001.Default - Default service implementations library for database connection configuration JSON file path related services.
+D001.I001 - T001 default file name-based service implementations for database connection configuration JSON file path related services.
+D001.I002 - D0070 appsettings directory-based database connection configuration directory path provider service implementation.
+D001.I003 - Suebia secrets directory-based database connection configuration secrets directory path provider service implementation.
+D002.I001 - An IConfiguration-based implementation of the T003 raw IDatabaseConnectionConfigurationProvider. (More as an intermediate construction aid than a file service.)
+D003.I001 - Options-based IDatabaseConnectionConfigurationProvider (strongly-typed) service implementation.
+
+D001.Standard - Standard aggregation library for database connection configuration JSON file path related services.

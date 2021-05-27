@@ -1,0 +1,4 @@
+R5T.Dunbar.T002.Extensions - Extensions and additionality functionality for raw configuration types for database connection configuration.
+
+Goals
+

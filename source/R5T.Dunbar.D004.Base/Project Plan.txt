@@ -1,0 +1,4 @@
+R5T.Dunbar.D004.Base - Base service definitions library for the IConnectionStringProvider, parameterless, stringly-typed service.
+
+Goals
+

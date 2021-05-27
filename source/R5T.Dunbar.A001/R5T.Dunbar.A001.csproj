@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\R5T.Chamavia\source\R5T.Chamavia\R5T.Chamavia.csproj" />
+    <ProjectReference Include="..\..\..\R5T.D0065\source\R5T.D0065.Standard\R5T.D0065.Standard.csproj" />
+    <ProjectReference Include="..\..\..\R5T.D0070\source\R5T.D0070.Standard\R5T.D0070.Standard.csproj" />
+    <ProjectReference Include="..\..\..\R5T.Lombardy\source\R5T.Lombardy\R5T.Lombardy.csproj" />
+    <ProjectReference Include="..\..\..\R5T.Suebia\source\R5T.Suebia.Standard\R5T.Suebia.Standard.csproj" />
+    <ProjectReference Include="..\..\..\R5T.T0020\source\R5T.T0020\R5T.T0020.csproj" />
+    <ProjectReference Include="..\R5T.Dunbar.D001.Standard\R5T.Dunbar.D001.Standard.csproj" />
+    <ProjectReference Include="..\R5T.Dunbar.D003.I001\R5T.Dunbar.D003.I001.csproj" />
+    <ProjectReference Include="..\R5T.Dunbar.D004.Default\R5T.Dunbar.D004.Default.csproj" />
+    <ProjectReference Include="..\R5T.Dunbar.D005.Default\R5T.Dunbar.D005.Default.csproj" />
+  </ItemGroup>
+
+</Project>

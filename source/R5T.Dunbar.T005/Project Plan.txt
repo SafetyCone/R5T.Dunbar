@@ -1,0 +1,4 @@
+R5T.Dunbar.T005 - Strong types for an IConnectionStringProvider.
+
+Goals
+

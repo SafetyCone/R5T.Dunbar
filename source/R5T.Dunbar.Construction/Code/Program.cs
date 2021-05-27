@@ -7,6 +7,8 @@ using Microsoft.Extensions.Hosting;
 using R5T.Plymouth;
 using R5T.Plymouth.ProgramAsAService;
 
+using R5T.Dunbar.Construction.Operations;
+
 
 namespace R5T.Dunbar.Construction
 {
@@ -14,11 +16,11 @@ namespace R5T.Dunbar.Construction
     {
         #region Main
 
-        static Task Main(string[] args)
+        static Task Main()
         {
             return ApplicationBuilder.Instance
                 .NewApplication()
-                .UseStartup<Startup>()
+                .UseStartup<Startup, StartupForConfiguration>()
                 .UseProgramAsAService<Program>()
                 .BuildProgramAsAServiceHost()
                 .Run();
@@ -26,16 +28,22 @@ namespace R5T.Dunbar.Construction
 
         #endregion
 
-        public Program(IApplicationLifetime applicationLifetime)
+
+        private IServiceProvider ServiceProvider { get; }
+
+
+        public Program(IApplicationLifetime applicationLifetime,
+            IServiceProvider serviceProvider)
             : base(applicationLifetime)
         {
+            this.ServiceProvider = serviceProvider;
         }
 
-        protected override Task ServiceMain(CancellationToken stoppingToken)
+        protected override async Task ServiceMain(CancellationToken stoppingToken)
         {
-            Console.WriteLine("Hello world!");
-
-            return Task.CompletedTask;
+            //await this.ServiceProvider.Run<GetRawDatabaseConnectionConfiguration>();
+            //await this.ServiceProvider.Run<GetDatabaseConnectionConfiguration>();
+            await this.ServiceProvider.Run<GetDatabaseConnectionString>();
         }
     }
 }

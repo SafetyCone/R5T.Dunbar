@@ -1,0 +1,4 @@
+R5T.Dunbar.D005.Default - Default service implementations library for the IConnectionStringProvider, parameterized by database name, stringly-typed service.
+
+Goals
+

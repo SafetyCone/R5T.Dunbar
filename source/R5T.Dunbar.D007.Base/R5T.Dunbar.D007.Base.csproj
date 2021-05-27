@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\R5T.Venetia\source\R5T.Venetia\R5T.Venetia.csproj" />
+    <ProjectReference Include="..\R5T.Dunbar.D006.Base\R5T.Dunbar.D006.Base.csproj" />
+  </ItemGroup>
+
+</Project>

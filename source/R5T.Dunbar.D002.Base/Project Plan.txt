@@ -1,0 +1,4 @@
+R5T.Dunbar.D002.Base - Base service definitions library for the IDatabaseConnectionConfigurationProvider (stringly-typed) service for an T003 raw database connection configuration.
+
+Goals
+

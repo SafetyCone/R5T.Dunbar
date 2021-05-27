@@ -1,0 +1,4 @@
+R5T.Dunbar.T003 - Single object raw configuration database connection configuration type.
+
+Goals
+

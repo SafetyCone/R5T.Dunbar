@@ -1,0 +1,4 @@
+R5T.Dunbar.T007 - Single object strongly-typed configuration database connection configuration type.
+
+Goals
+

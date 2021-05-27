@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\R5T.Plymouth\source\R5T.Plymouth.ServiceProvider\R5T.Plymouth.ServiceProvider.csproj" />
+    <ProjectReference Include="..\R5T.Dunbar.D006.Default\R5T.Dunbar.D006.Default.csproj" />
+  </ItemGroup>
+
+</Project>

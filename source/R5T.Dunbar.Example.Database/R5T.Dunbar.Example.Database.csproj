@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\R5T.Dunbar.Example.Repository.DbContext\R5T.Dunbar.Example.Repository.DbContext.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,19 @@
+{
+  "DatabaseConnectionConfiguration": {
+    "DatabaseName": "LocalDevelopment",
+    "ConnectionStringsByDatabaseName": {
+      "LocalDevelopment2": "Server=(localdb)\\MSSQLLocalDB;Database=Dunbar;Trusted_Connection=True;MultipleActiveResultSets=true;"
+    },
+    "ConnectionConfigurationsByDatabaseName": {
+      "LocalDevelopment": {
+        "ServerName": "Local",
+        "ServerDatabaseName": "Dunbar2"
+      },
+      "RemoteDevelopment": {
+        "ServerName": "safetycone_rds",
+        "ServerDatabaseName": "SafetyCone_Development"
+      }
+    },
+    "LocalBaseConnectionString": "Server=(localdb)\\MSSQLLocalDB;Trusted_Connection=True;MultipleActiveResultSets=true;"
+  }
+}

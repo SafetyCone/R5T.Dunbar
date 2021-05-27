@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20210527214308_Initial.cs" />
+    <Compile Remove="Migrations\20210527214308_Initial.Designer.cs" />
+    <Compile Remove="Migrations\20210527215248_Initial.cs" />
+    <Compile Remove="Migrations\20210527215248_Initial.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\R5T.Ostrogothia.Rivet.Private\source\R5T.Ostrogothia.Rivet\R5T.Ostrogothia.Rivet.csproj" />
+    <ProjectReference Include="..\R5T.Dunbar.A001\R5T.Dunbar.A001.csproj" />
+    <ProjectReference Include="..\R5T.Dunbar.D006.Migrations\R5T.Dunbar.D006.Migrations.csproj" />
+    <ProjectReference Include="..\R5T.Dunbar.Example.DatabaseConnectionConfiguration\R5T.Dunbar.Example.DatabaseConnectionConfiguration.csproj" />
+    <ProjectReference Include="..\R5T.Dunbar.Example.Database\R5T.Dunbar.Example.Database.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
+</Project>

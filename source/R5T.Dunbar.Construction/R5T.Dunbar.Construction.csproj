@@ -1,13 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\R5T.Ostrogothia.Rivet.Private\source\R5T.Ostrogothia.Rivet\R5T.Ostrogothia.Rivet.csproj" />
     <ProjectReference Include="..\..\..\R5T.Plymouth\source\R5T.Plymouth.ProgramAsAService\R5T.Plymouth.ProgramAsAService.csproj" />
+    <ProjectReference Include="..\..\..\R5T.T0024\source\R5T.T0024\R5T.T0024.csproj" />
+    <ProjectReference Include="..\R5T.Dunbar.A001\R5T.Dunbar.A001.csproj" />
+    <ProjectReference Include="..\R5T.Dunbar.D002.I001\R5T.Dunbar.D002.I001.csproj" />
     <ProjectReference Include="..\R5T.Dunbar\R5T.Dunbar.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="DatabaseConnectionConfiguration.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
 </Project>

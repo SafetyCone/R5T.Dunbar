@@ -1,0 +1,4 @@
+R5T.Dunbar.D003.Base - Base service definitions library for the IDatabaseConnectionConfigurationProvider (strongly-typed) provider for an T007 strongly-typed database connection configuration.
+
+Goals
+

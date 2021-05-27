@@ -1,0 +1,4 @@
+R5T.Dunbar.D001.Base - Base service definitions library for database connection configuration JSON file path related services.
+
+Goals
+

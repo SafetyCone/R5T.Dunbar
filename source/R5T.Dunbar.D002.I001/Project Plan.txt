@@ -1,0 +1,4 @@
+R5T.Dunbar.D002.I001 - An IConfiguration-based implementation of the T003 raw IDatabaseConnectionConfigurationProvider. (More as an intermediate construction aid than a file service.)
+
+Goals
+

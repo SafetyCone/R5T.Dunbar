@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\R5T.Dunbar.D001.Default\R5T.Dunbar.D001.Default.csproj" />
+    <ProjectReference Include="..\R5T.Dunbar.D001.I001\R5T.Dunbar.D001.I001.csproj" />
+    <ProjectReference Include="..\R5T.Dunbar.D001.I002\R5T.Dunbar.D001.I002.csproj" />
+    <ProjectReference Include="..\R5T.Dunbar.D001.I003\R5T.Dunbar.D001.I003.csproj" />
+  </ItemGroup>
+
+</Project>

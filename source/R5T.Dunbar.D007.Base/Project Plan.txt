@@ -1,0 +1,4 @@
+R5T.Dunbar.D007.Base - Base service definitions library for database-named IDbContextConstructor related services.
+
+Goals
+

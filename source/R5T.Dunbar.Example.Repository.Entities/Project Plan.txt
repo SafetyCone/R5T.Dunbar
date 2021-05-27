@@ -1,0 +1,4 @@
+R5T.Dunbar.Example.Repository.Entities - Entities for the Dunbar example repository DbContext.
+
+Goals
+
