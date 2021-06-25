@@ -3,20 +3,13 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-using R5T.Bulgaria;
-using R5T.Carpathia;
-using R5T.Costobocia;
 using R5T.Dacia;
 using R5T.Lombardy;
 using R5T.Ostrogothia;
-using R5T.Quadia;
-using R5T.Suebia;
 using R5T.Suebia.Standard;
-using R5T.Visigothia;
 
 using R5T.D0065;
 using R5T.D0065.Standard;
-using R5T.D0070;
 using R5T.D0070.Standard;
 
 using R5T.Dunbar.D001.DatabaseConnectionConfiguration;
@@ -30,9 +23,6 @@ using R5T.Dunbar.A001.Operations;
 
 using IConnectionStringProviderParameterized = R5T.Dunbar.D005.IConnectionStringProvider;
 using IConnectionStringProviderParameterless = R5T.Dunbar.D004.IConnectionStringProvider;
-using IOrganizationDirectoryPathProvider = R5T.Carpathia.IOrganizationDirectoryPathProvider;
-using IOrganizationalDirectoryPathProvider = R5T.Costobocia.IOrganizationDirectoryPathProvider;
-using ISecretsDirectoryPathProvider = R5T.Suebia.ISecretsDirectoryPathProvider;
 
 
 namespace R5T.Dunbar.A001
@@ -68,48 +58,9 @@ namespace R5T.Dunbar.A001
             return serviceAction;
         }
 
-
-        public static
-            (
-            (
-            IServiceAction<IDirectoryNameOperator> DirectoryNameOperatorAction,
-            IServiceAction<IDirectorySeparatorOperator> DirectorySeparatorOperatorAction,
-            IServiceAction<IFileExtensionOperator> FileExtensionOperatorAction,
-            IServiceAction<IFileNameOperator> FileNameOperatorAction,
-            IServiceAction<IStringlyTypedPathOperator> StringlyTypedPathOperatorAction
-            ) PathRelatedOperatorsAction,
-            (
-            IServiceAction<IExecutableDirectoryPathProvider> _,
-            IServiceAction<IExecutableFilePathProvider> IExecutableFilePathProviderAction
-            ) ExecutableDirectoryPathProviderAction,
-            (
-            IServiceAction<IAppSettingsFilePathProvider> _,
-            IServiceAction<IAppSettingsDirectoryPathProvider> AppSettingsDirectoryPathProviderAction,
-            IServiceAction<IAppSettingsFileNameProvider> AppSettingsFileNameProviderAction
-            ) DefaultJsonAppSettingsFilePathProviderAction,
-            (
-            IServiceAction<ISecretsDirectoryFilePathProvider> _,
-            IServiceAction<ISecretsDirectoryPathProvider> SecretsDirectoryPathProviderAction,
-            IServiceAction<IOrganizationDataDirectoryPathProvider> OrganizationDataDirectoryPathProviderAction,
-            IServiceAction<IOrganizationDirectoryPathProvider> OrganizationDirectoryPathProviderAction,
-            IServiceAction<ISharedOrganizationDirectoryPathProvider> SharedOrganizationDirectoryPathProviderAction,
-            IServiceAction<ISharedDirectoryNameProvider> SharedDirectoryNameProviderAction,
-            IServiceAction<IOrganizationalDirectoryPathProvider> OrganizationalDirectoryPathProviderAction,
-            IServiceAction<IOrganizationDirectoryNameProvider> OrganizationDirectoryNameProviderAction,
-            IServiceAction<IOrganizationsDirectoryPathProvider> OrganizationsDirectoryPathProviderAction,
-            IServiceAction<IOrganizationsDirectoryNameProvider> OrganizationsDirectoryNameProviderAction,
-            IServiceAction<IDropboxDirectoryPathProvider> DropboxDirectoryPathProviderAction,
-            IServiceAction<IDropboxDirectoryNameProvider> DropboxDirectoryNameProviderAction,
-            IServiceAction<IUserProfileDirectoryPathProvider> UserProfileDirectoryPathProviderAction
-            ) SecretsDirectoryFilePathProviderAction,
-            FilePathServicesAggregation02 DatabaseConnectionConfigurationFilePathServicesAggregation,
-            IServiceAction<AddDatabaseConnectionConfigurationJsonFilePaths> AddDatabaseConnectionConfigurationJsonFilePathsAction
-            )
-        AddDefaultConfigurationServiceActions(this IServiceCollection services,
+        public static DefaultConfigurationServicesAggregation01 AddDefaultConfigurationServiceActions(this IServiceCollection services,
             IServiceAction<IOrganizationProvider> organizationProviderAction)
         {
-#pragma warning disable IDE0042 // Deconstruct variable declaration
-
             // Level 0.
             var pathRelatedOperatorsAction = services.AddPathRelatedOperatorsAction();
 
@@ -121,15 +72,15 @@ namespace R5T.Dunbar.A001
                 pathRelatedOperatorsAction.StringlyTypedPathOperatorAction);
 
             // Level 2.
-            var defaultJsonAppSettingsFilePathProviderAction = services.AddDefaultJsonAppSettingsFilePathProviderAction(
-                executableDirectoryPathProviderAction._,
+            var appSettingsFilePathProviderAction = services.AddDefaultJsonAppSettingsFilePathProviderAction(
+                executableDirectoryPathProviderAction.ExecutableDirectoryPathProviderAction,
                 pathRelatedOperatorsAction.FileNameOperatorAction,
                 pathRelatedOperatorsAction.StringlyTypedPathOperatorAction);
 
             // Level 3.
             var databaseConnectionConfigurationFilePathServicesAggregation = services.AddDatabaseConnectionConfigurationFilePathServicesAction(
-                defaultJsonAppSettingsFilePathProviderAction.AppSettingsDirectoryPathProviderAction,
-                secretsDirectoryFilePathProviderAction._,
+                appSettingsFilePathProviderAction.AppSettingsDirectoryPathProviderAction,
+                secretsDirectoryFilePathProviderAction.SecretsDirectoryFilePathProviderAction,
                 pathRelatedOperatorsAction.StringlyTypedPathOperatorAction);
 
             // Operations.
@@ -137,17 +88,15 @@ namespace R5T.Dunbar.A001
                 databaseConnectionConfigurationFilePathServicesAggregation.JsonFilePathProviderAction,
                 databaseConnectionConfigurationFilePathServicesAggregation.SecretsJsonFilePathProviderAction);
 
-#pragma warning restore IDE0042 // Deconstruct variable declaration
-
-            return
-                (
-                pathRelatedOperatorsAction,
-                executableDirectoryPathProviderAction,
-                defaultJsonAppSettingsFilePathProviderAction,
-                secretsDirectoryFilePathProviderAction,
-                databaseConnectionConfigurationFilePathServicesAggregation,
-                addDatabaseConnectionConfigurationJsonFilePathsAction
-                );
+            return new DefaultConfigurationServicesAggregation01
+            {
+                AddDatabaseConnectionConfigurationJsonFilePathsAction = addDatabaseConnectionConfigurationJsonFilePathsAction,
+                AppSettingsFilePathServices = appSettingsFilePathProviderAction,
+                DatabaseConnectionConfigurationFilePathServicesAggregation = databaseConnectionConfigurationFilePathServicesAggregation,
+                ExecutableDirectoryPathServices = executableDirectoryPathProviderAction,
+                PathRelatedOperators = pathRelatedOperatorsAction,
+                SecretsDirectoryFilePathServices = secretsDirectoryFilePathProviderAction,
+            };
         }
 
         public static

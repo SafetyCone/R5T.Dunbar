@@ -42,7 +42,8 @@ namespace R5T.Dunbar.Example
 
         protected override async Task ServiceMain(CancellationToken stoppingToken)
         {
-            await this.ServiceProvider.Run<GetExampleRepository>();
+            //await this.ServiceProvider.Run<GetExampleRepository>();
+            await this.ServiceProvider.Run<GetExampleRepositoriesFromNamedSources>();
         }
     }
 }

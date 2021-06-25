@@ -39,7 +39,7 @@ namespace R5T.Dunbar.Example
 
             services
                 .Run(configurationServiceActions.AddDatabaseConnectionConfigurationJsonFilePathsAction)
-                .Run(databaseConnectionConfigurationJsonFilePathProviderAction)
+                //.Run(databaseConnectionConfigurationJsonFilePathProviderAction)
                 ;
         }
     }

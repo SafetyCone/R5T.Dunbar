@@ -8,11 +8,11 @@
       "LocalDevelopment": {
         "ServerName": "Local",
         "ServerDatabaseName": "Dunbar.Example"
+      },
+      "RemoteDevelopment": {
+        "ServerName": "safetycone_rds",
+        "ServerDatabaseName": "Dunbar.Example_Development22"
       }
-      //"RemoteDevelopment": {
-      //  "ServerName": "safetycone_rds",
-      //  "ServerDatabaseName": "SafetyCone_Development"
-      //}
     },
     "LocalBaseConnectionString": "Server=(localdb)\\MSSQLLocalDB;Trusted_Connection=True;MultipleActiveResultSets=true;"
   }

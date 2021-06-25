@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 
 using R5T.Dacia;
+using R5T.Magyar;
 
 using R5T.Dunbar.D004;
 
@@ -108,13 +109,7 @@ namespace R5T.Dunbar.D006
             return serviceAction;
         }
 
-        public static
-            (
-            IServiceAction<IDbContextConstructor<TDbContext>> _,
-            IServiceAction<IDbContextOptionsProvider<TDbContext>> DbContextOptionsProviderAction,
-            IServiceAction<IDbContextOptionsBuilderConfigurer<TDbContext>> DbContextOptionsBuilderConfigurerAction
-            )
-        AddDbContextConstructorAction<TDbContext>(this IServiceCollection services,
+        public static DbContextConstructorAggregation01<TDbContext> AddDbContextConstructorAction<TDbContext>(this IServiceCollection services,
             IServiceAction<IConnectionStringProvider> connectionStringProviderAction,
             Func<DbContextOptions<TDbContext>, Task<TDbContext>> constructor)
             where TDbContext : DbContext
@@ -129,36 +124,25 @@ namespace R5T.Dunbar.D006
                 dbContextOptionsProviderAction,
                 constructor);
 
-            return
-                (
-                dbContextConstructorAction,
-                dbContextOptionsProviderAction,
-                dbContextOptionsBuilderConfigurerAction
-                );
+            return new DbContextConstructorAggregation01<TDbContext>
+            {
+                DbContextConstructorAction = dbContextConstructorAction,
+                DbContextOptionsBuilderConfigurerAction = dbContextOptionsBuilderConfigurerAction,
+                DbContextOptionsProviderAction = dbContextOptionsProviderAction,
+            };
         }
 
-        public static
-            (
-            IServiceAction<IDbContextConstructor<TDbContext>> _,
-            IServiceAction<IDbContextOptionsProvider<TDbContext>> DbContextOptionsProviderAction,
-            IServiceAction<IDbContextOptionsBuilderConfigurer<TDbContext>> DbContextOptionsBuilderConfigurerAction
-            )
-        AddDbContextConstructorAction<TDbContext>(this IServiceCollection services,
+        public static DbContextConstructorAggregation01<TDbContext> AddDbContextConstructorAction<TDbContext>(this IServiceCollection services,
             IServiceAction<IConnectionStringProvider> connectionStringProviderAction,
-            Func<DbContextOptions<TDbContext>, TDbContext> synchronousConstructor)
+            Func<DbContextOptions<TDbContext>, TDbContext> constructor)
             where TDbContext : DbContext
         {
             return services.AddDbContextConstructorAction(
                 connectionStringProviderAction,
-                DbContextHelper.GetAsynchronousConstructor<TDbContext>(synchronousConstructor));
+                TaskHelper.MakeAsynchronous(constructor));
         }
 
-        public static
-            (
-            IServiceAction<IDbContextConstructor<TDbContext>> _,
-            IServiceAction<IDbContextOptionsProvider<TDbContext>> DbContextOptionsProviderAction
-            )
-        AddDbContextConstructorAction<TDbContext>(this IServiceCollection services,
+        public static DbContextConstructorAggregation02<TDbContext> AddDbContextConstructorAction<TDbContext>(this IServiceCollection services,
             IServiceAction<IDbContextOptionsBuilderConfigurer<TDbContext>> dbContextOptionsBuilderConfigurerAction,
             Func<DbContextOptions<TDbContext>, Task<TDbContext>> constructor)
             where TDbContext : DbContext
@@ -170,26 +154,21 @@ namespace R5T.Dunbar.D006
                 dbContextOptionsProviderAction,
                 constructor);
 
-            return
-                (
-                dbContextConstructorAction,
-                dbContextOptionsProviderAction
-                );
+            return new DbContextConstructorAggregation02<TDbContext>
+            {
+                DbContextConstructorAction = dbContextConstructorAction,
+                DbContextOptionsProviderAction = dbContextOptionsProviderAction,
+            };
         }
 
-        public static
-            (
-            IServiceAction<IDbContextConstructor<TDbContext>> _,
-            IServiceAction<IDbContextOptionsProvider<TDbContext>> DbContextOptionsProviderAction
-            )
-        AddDbContextConstructorAction<TDbContext>(this IServiceCollection services,
+        public static DbContextConstructorAggregation02<TDbContext> AddDbContextConstructorAction<TDbContext>(this IServiceCollection services,
             IServiceAction<IDbContextOptionsBuilderConfigurer<TDbContext>> dbContextOptionsBuilderConfigurerAction,
-            Func<DbContextOptions<TDbContext>, TDbContext> synchronousConstructor)
+            Func<DbContextOptions<TDbContext>, TDbContext> constructor)
             where TDbContext : DbContext
         {
             return services.AddDbContextConstructorAction(
                 dbContextOptionsBuilderConfigurerAction,
-                DbContextHelper.GetAsynchronousConstructor<TDbContext>(synchronousConstructor));
+                TaskHelper.MakeAsynchronous(constructor));
         }
     }
 }

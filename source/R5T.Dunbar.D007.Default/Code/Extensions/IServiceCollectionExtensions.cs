@@ -48,7 +48,9 @@ namespace R5T.Dunbar.D007
             IServiceAction<IDbContextOptionsBuilderConfigurer<TDbContext>> dbContextOptionsBuilderConfigurerAction)
             where TDbContext : DbContext
         {
-            services.AddSingleton<IDbContextOptionsProvider<TDbContext>, DbContextOptionsProvider<TDbContext>>();
+            services.AddSingleton<IDbContextOptionsProvider<TDbContext>, DbContextOptionsProvider<TDbContext>>()
+                .Run(dbContextOptionsBuilderConfigurerAction)
+                ;
 
             return services;
         }
@@ -104,6 +106,69 @@ namespace R5T.Dunbar.D007
                 constructor));
 
             return serviceAction;
+        }
+
+
+        public static DbContextConstructorProviderAggregation01<TDbContext> AddDbContextConstructorProviderAction<TDbContext>(this IServiceCollection services,
+            IServiceAction<IConnectionStringProvider> connectionStringProviderAction,
+            Func<DbContextOptions<TDbContext>, Task<TDbContext>> constructor)
+            where TDbContext : DbContext
+        {
+            var dbContextOptionsBuilderConfigurerAction = services.AddSqlServerConnectionStringBasedDbContextOptionBuilderConfigurerAction<TDbContext>(
+                connectionStringProviderAction);
+
+            var dbContextOptionsProviderAction = services.AddDbContextOptionsProviderAction<TDbContext>(
+                dbContextOptionsBuilderConfigurerAction);
+
+            var dbContextConstructorProviderAction = services.AddFunctionBasedDbContextConstructorProviderAction<TDbContext>(
+                dbContextOptionsProviderAction,
+                constructor);
+
+            return new DbContextConstructorProviderAggregation01<TDbContext>
+            {
+                DbContextConstructorProviderAction = dbContextConstructorProviderAction,
+                DbContextOptionBuilderConfigurerAction = dbContextOptionsBuilderConfigurerAction,
+                DbContextOptionsProviderAction = dbContextOptionsProviderAction,
+            };
+        }
+
+        public static DbContextConstructorProviderAggregation01<TDbContext> AddDbContextConstructorProviderAction<TDbContext>(this IServiceCollection services,
+            IServiceAction<IConnectionStringProvider> connectionStringProviderAction,
+            Func<DbContextOptions<TDbContext>, TDbContext> constructor)
+            where TDbContext : DbContext
+        {
+            return services.AddDbContextConstructorProviderAction(
+                connectionStringProviderAction,
+                DbContextHelper.GetAsynchronousConstructor<TDbContext>(constructor));
+        }
+
+        public static DbContextConstructorProviderAggregation02<TDbContext> AddDbContextConstructorProviderAction<TDbContext>(this IServiceCollection services,
+            IServiceAction<IDbContextOptionsBuilderConfigurer<TDbContext>> dbContextOptionsBuilderConfigurerAction,
+            Func<DbContextOptions<TDbContext>, Task<TDbContext>> constructor)
+            where TDbContext : DbContext
+        {
+            var dbContextOptionsProviderAction = services.AddDbContextOptionsProviderAction<TDbContext>(
+                dbContextOptionsBuilderConfigurerAction);
+
+            var dbContextConstructorProviderAction = services.AddFunctionBasedDbContextConstructorProviderAction<TDbContext>(
+                dbContextOptionsProviderAction,
+                constructor);
+
+            return new DbContextConstructorProviderAggregation02<TDbContext>
+            {
+                DbContextConstructorProviderAction = dbContextConstructorProviderAction,
+                DbContextOptionsProviderAction = dbContextOptionsProviderAction,
+            };
+        }
+
+        public static DbContextConstructorProviderAggregation02<TDbContext> AddDbContextConstructorProviderAction<TDbContext>(this IServiceCollection services,
+            IServiceAction<IDbContextOptionsBuilderConfigurer<TDbContext>> dbContextOptionsBuilderConfigurerAction,
+            Func<DbContextOptions<TDbContext>, TDbContext> constructor)
+            where TDbContext : DbContext
+        {
+            return services.AddDbContextConstructorProviderAction(
+                dbContextOptionsBuilderConfigurerAction,
+                DbContextHelper.GetAsynchronousConstructor<TDbContext>(constructor));
         }
     }
 }

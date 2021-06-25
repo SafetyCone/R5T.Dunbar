@@ -9,6 +9,17 @@ namespace R5T.Dunbar.Example.Database
 {
     public class ExampleDbContext : DbContext, IExampleDbContext
     {
+        #region Static
+
+        public static ExampleDbContext Constructor(DbContextOptions<ExampleDbContext> dbContextOptions)
+        {
+            var output = new ExampleDbContext(dbContextOptions);
+            return output;
+        }
+
+        #endregion
+
+
         public DbSet<ExampleEntity> ExampleEntities { get; set; }
 
 
