@@ -3,12 +3,15 @@ using System.Threading.Tasks;
 
 using Microsoft.Extensions.Options;
 
+using R5T.T0064;
+
 using R5T.Dunbar.T007;
 
 
 namespace R5T.Dunbar.D003.I001
 {
-    public class DatabaseConnectionConfigurationProvider : IDatabaseConnectionConfigurationProvider
+    [ServiceImplementationMarker]
+    public class DatabaseConnectionConfigurationProvider : IDatabaseConnectionConfigurationProvider, IServiceImplementation
     {
         private IOptions<DatabaseConnectionConfiguration> Options { get; }
 

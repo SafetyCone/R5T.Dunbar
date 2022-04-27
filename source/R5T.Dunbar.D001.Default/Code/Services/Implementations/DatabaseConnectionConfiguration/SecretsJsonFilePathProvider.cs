@@ -3,10 +3,13 @@ using System.Threading.Tasks;
 
 using R5T.Lombardy;
 
+using R5T.T0064;
+
 
 namespace R5T.Dunbar.D001.DatabaseConnectionConfiguration
 {
-    public class SecretsJsonFilePathProvider : ISecretsJsonFilePathProvider
+    [ServiceImplementationMarker]
+    public class SecretsJsonFilePathProvider : ISecretsJsonFilePathProvider, IServiceImplementation
     {
         private ISecretsDirectoryPathProvider SecretsDirectoryPathProvider { get; }
         private ISecretsJsonFileNameProvider SecretsJsonFileNameProvider { get; }

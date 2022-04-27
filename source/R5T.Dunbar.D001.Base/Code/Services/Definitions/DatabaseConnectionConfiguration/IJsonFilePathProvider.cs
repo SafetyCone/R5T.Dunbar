@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
 
+using R5T.T0064;
+
 
 namespace R5T.Dunbar.D001.DatabaseConnectionConfiguration
 {
-    public interface IJsonFilePathProvider
+    [ServiceDefinitionMarker]
+    public interface IJsonFilePathProvider : IServiceDefinition
     {
         Task<string> GetJsonFilePath();
     }

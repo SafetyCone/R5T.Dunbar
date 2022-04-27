@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Threading.Tasks;
 
+using R5T.T0064;
+
+
 namespace R5T.Dunbar.D001.DatabaseConnectionConfiguration
 {
-    public class ConstructorBasedJsonFilePathProvider : IJsonFilePathProvider
+    [ServiceImplementationMarker]
+    public class ConstructorBasedJsonFilePathProvider : IJsonFilePathProvider, IServiceImplementation
     {
         private string JsonFilePath { get; }
 
 
         public ConstructorBasedJsonFilePathProvider(
-            string jsonFilePath)
+            [NotServiceComponent] string jsonFilePath)
         {
             this.JsonFilePath = jsonFilePath;
         }

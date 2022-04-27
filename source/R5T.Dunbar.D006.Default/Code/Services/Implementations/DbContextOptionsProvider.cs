@@ -3,10 +3,13 @@ using System.Threading.Tasks;
 
 using Microsoft.EntityFrameworkCore;
 
+using R5T.T0064;
+
 
 namespace R5T.Dunbar.D006
 {
-    public class DbContextOptionsProvider<TDbContext> : IDbContextOptionsProvider<TDbContext>
+    [ServiceImplementationMarker]
+    public class DbContextOptionsProvider<TDbContext> : IDbContextOptionsProvider<TDbContext>, IServiceImplementation
         where TDbContext : DbContext
     {
         private IDbContextOptionsBuilderConfigurer<TDbContext> DbContextOptionsBuilderConfigurer { get; }

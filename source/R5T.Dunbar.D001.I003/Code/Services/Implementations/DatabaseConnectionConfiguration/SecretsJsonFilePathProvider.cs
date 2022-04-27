@@ -3,12 +3,15 @@ using System.Threading.Tasks;
 
 using R5T.Suebia;
 
+using R5T.T0064;
+
 using R5T.Dunbar.D001.DatabaseConnectionConfiguration;
 
 
 namespace R5T.Dunbar.D001.I003.DatabaseConnectionConfiguration
 {
-    public class SecretsJsonFilePathProvider : ISecretsJsonFilePathProvider
+    [ServiceImplementationMarker]
+    public class SecretsJsonFilePathProvider : ISecretsJsonFilePathProvider, IServiceImplementation
     {
         private ISecretsDirectoryFilePathProvider SecretsDirectoryFilePathProvider { get; }
         private ISecretsJsonFileNameProvider SecretsJsonFileNameProvider { get; }

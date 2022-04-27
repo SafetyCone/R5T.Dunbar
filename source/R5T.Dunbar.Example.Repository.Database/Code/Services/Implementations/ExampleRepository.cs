@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 
+using R5T.T0064;
+
 using R5T.Dunbar.Repository;
 
 using R5T.Dunbar.D006;
@@ -12,7 +14,8 @@ using EFDbContext = Microsoft.EntityFrameworkCore.DbContext;
 
 namespace R5T.Dunbar.Example.Repository.Database
 {
-    public class ExampleRepository<TDbContext> : DbContextBasedRepositoryBase<TDbContext>, IExampleRepository
+    [ServiceImplementationMarker]
+    public class ExampleRepository<TDbContext> : DbContextBasedRepositoryBase<TDbContext>, IExampleRepository, IServiceImplementation
         where TDbContext : EFDbContext, IExampleDbContext
     {
         #region Static
@@ -27,7 +30,8 @@ namespace R5T.Dunbar.Example.Repository.Database
         #endregion
 
 
-        public ExampleRepository(IDbContextConstructor<TDbContext> dbContextConstructor)
+        public ExampleRepository(
+            IDbContextConstructor<TDbContext> dbContextConstructor)
             : base(dbContextConstructor)
         {
         }

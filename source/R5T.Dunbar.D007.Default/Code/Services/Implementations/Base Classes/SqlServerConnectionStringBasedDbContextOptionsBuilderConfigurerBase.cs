@@ -9,7 +9,8 @@ using R5T.Dunbar.D005;
 
 namespace R5T.Dunbar.D007
 {
-    public abstract class SqlServerConnectionStringBasedDbContextOptionsBuilderConfigurerBase<TDbContext> : ConnectionStringBasedDbContextOptionsBuilderConfigurerBase<TDbContext>
+    public abstract class SqlServerConnectionStringBasedDbContextOptionsBuilderConfigurerBase<TDbContext> : ConnectionStringBasedDbContextOptionsBuilderConfigurerBase<TDbContext>,
+        IDbContextOptionsBuilderConfigurer<TDbContext>
         where TDbContext : DbContext
     {
         public SqlServerConnectionStringBasedDbContextOptionsBuilderConfigurerBase(IConnectionStringProvider connectionStringProvider)

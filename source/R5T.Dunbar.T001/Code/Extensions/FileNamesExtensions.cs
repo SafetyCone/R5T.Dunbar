@@ -9,13 +9,9 @@ namespace System
 {
     public static class FileNamesExtensions
     {
-#pragma warning disable IDE0060 // Remove unused parameter
-
-        public static string DefaultDatabaseConnectionConfigurationJsonFileName(this IFileNames fileNames)
+        public static string DefaultDatabaseConnectionConfigurationJsonFileName(this IFileName _)
         {
             return FileNames.DefaultDatabaseConnectionConfigurationJsonFileName;
         }
-
-#pragma warning restore IDE0060 // Remove unused parameter
     }
 }

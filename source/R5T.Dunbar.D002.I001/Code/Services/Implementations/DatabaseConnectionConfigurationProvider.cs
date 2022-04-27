@@ -4,13 +4,15 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 
 using R5T.T0022;
+using R5T.T0064;
 
 using R5T.Dunbar.T003;
 
 
 namespace R5T.Dunbar.D002.I001
 {
-    public class DatabaseConnectionConfigurationProvider : IDatabaseConnectionConfigurationProvider
+    [ServiceImplementationMarker]
+    public class DatabaseConnectionConfigurationProvider : IDatabaseConnectionConfigurationProvider, IServiceImplementation
     {
         private IConfiguration Configuration { get; }
 

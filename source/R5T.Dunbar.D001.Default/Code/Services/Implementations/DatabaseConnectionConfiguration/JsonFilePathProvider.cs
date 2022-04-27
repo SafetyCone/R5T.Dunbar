@@ -3,10 +3,13 @@ using System.Threading.Tasks;
 
 using R5T.Lombardy;
 
+using R5T.T0064;
+
 
 namespace R5T.Dunbar.D001.DatabaseConnectionConfiguration
 {
-    public class JsonFilePathProvider : IJsonFilePathProvider
+    [ServiceImplementationMarker]
+    public class JsonFilePathProvider : IJsonFilePathProvider, IServiceImplementation
     {
         private IDirectoryPathProvider DirectoryPathProvider { get; }
         private IJsonFileNameProvider JsonFileNameProvider { get; }

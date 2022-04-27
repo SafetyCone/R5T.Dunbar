@@ -3,18 +3,24 @@ using System.Threading.Tasks;
 
 using Microsoft.EntityFrameworkCore;
 
+using R5T.T0064;
+
 
 namespace R5T.Dunbar.D007
 {
-    public class FunctionBasedDbContextConstructorProvider<TDbContext> : DbContextConstructorProviderBase<TDbContext>
+    [ServiceImplementationMarker]
+    public class FunctionBasedDbContextConstructorProvider<TDbContext> : DbContextConstructorProviderBase<TDbContext>,
+        IDbContextConstructorProvider<TDbContext>,
+        IServiceImplementation
         where TDbContext : DbContext
     {
         private Func<DbContextOptions<TDbContext>, Task<TDbContext>> Constructor { get; }
 
 
 
-        public FunctionBasedDbContextConstructorProvider(IDbContextOptionsProvider<TDbContext> dbContextOptionsProvider,
-            Func<DbContextOptions<TDbContext>, Task<TDbContext>> constructor)
+        public FunctionBasedDbContextConstructorProvider(
+            IDbContextOptionsProvider<TDbContext> dbContextOptionsProvider,
+            [NotServiceComponent] Func<DbContextOptions<TDbContext>, Task<TDbContext>> constructor)
             : base(dbContextOptionsProvider)
         {
             this.Constructor = constructor;

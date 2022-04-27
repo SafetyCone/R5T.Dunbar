@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Threading.Tasks;
 
+using R5T.T0064;
+
 using R5T.Dunbar.D003;
 
 
 namespace R5T.Dunbar.D005
 {
-    public class ConnectionStringProvider : IConnectionStringProvider
+    [ServiceImplementationMarker]
+    public class ConnectionStringProvider : IConnectionStringProvider, IServiceImplementation
     {
         private IDatabaseConnectionConfigurationProvider DatabaseConnectionConfigurationProvider { get; }
 

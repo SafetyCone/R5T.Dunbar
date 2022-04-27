@@ -2,6 +2,8 @@
 
 using Microsoft.Extensions.Options;
 
+using R5T.T0064;
+
 using R5T.Dunbar.T007;
 
 using RawDatabaseConnectionConfiguration = R5T.Dunbar.T003.DatabaseConnectionConfiguration;
@@ -9,7 +11,8 @@ using RawDatabaseConnectionConfiguration = R5T.Dunbar.T003.DatabaseConnectionCon
 
 namespace R5T.Dunbar.D003.I001
 {
-    public class DatabaseConnectionConfigurationConfigureOptions : IConfigureOptions<DatabaseConnectionConfiguration>
+    [ServiceImplementationMarker]
+    public class DatabaseConnectionConfigurationConfigureOptions : IConfigureOptions<DatabaseConnectionConfiguration>, IServiceImplementation
     {
         private IOptions<RawDatabaseConnectionConfiguration> RawOptions { get; }
 

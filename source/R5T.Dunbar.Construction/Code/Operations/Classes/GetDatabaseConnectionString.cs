@@ -10,7 +10,7 @@ using IParameterizedConnectionStringProvider = R5T.Dunbar.D005.IConnectionString
 
 namespace R5T.Dunbar.Construction.Operations
 {
-    public class GetDatabaseConnectionString : IOperation
+    public class GetDatabaseConnectionString : IActionOperation
     {
         private IParameterizedConnectionStringProvider ParameterizedConnectionStringProvider { get; }
         private IParameterlessConnectionStringProvider ParameterlessConnectionStringProvider { get; }
