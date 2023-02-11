@@ -15,7 +15,7 @@ namespace R5T.Dunbar.D003.I001
     public static class IServiceCollectionExtensions
     {
         /// <summary>
-        /// Adds the <see cref="DatabaseConnectionConfiguration"/> implementation of <see cref="IDatabaseConnectionConfigurationProvider"/> as a <see cref="ServiceLifetime.Singleton"/> from configuation.
+        /// Adds the <see cref="DatabaseConnectionConfigurationProvider"/> implementation of <see cref="IDatabaseConnectionConfigurationProvider"/> as a <see cref="ServiceLifetime.Singleton"/> from configuation.
         /// </summary>
         public static IServiceCollection AddDatabaseConnectionConfigurationProvider(this IServiceCollection services, IConfiguration configuration)
         {
@@ -29,7 +29,7 @@ namespace R5T.Dunbar.D003.I001
         }
 
         /// <summary>
-        /// Adds the <see cref="DatabaseConnectionConfiguration"/> implementation of <see cref="IDatabaseConnectionConfigurationProvider"/> as a <see cref="ServiceLifetime.Singleton"/> from configuation.
+        /// Adds the <see cref="DatabaseConnectionConfigurationProvider"/> implementation of <see cref="IDatabaseConnectionConfigurationProvider"/> as a <see cref="ServiceLifetime.Singleton"/> from configuation.
         /// </summary>
         public static IServiceAction<IDatabaseConnectionConfigurationProvider> AddDatabaseConnectionConfigurationProviderAction(this IServiceCollection services, IConfiguration configuration)
         {

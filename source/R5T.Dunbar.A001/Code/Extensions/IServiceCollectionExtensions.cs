@@ -10,6 +10,7 @@ using R5T.Suebia.Standard;
 
 using R5T.D0065;
 using R5T.D0065.Standard;
+using R5T.D0070.Default;
 using R5T.D0070.Standard;
 
 using R5T.Dunbar.D001.DatabaseConnectionConfiguration;
@@ -67,20 +68,18 @@ namespace R5T.Dunbar.A001
             // Level 1.
             var executableDirectoryPathProviderAction = services.AddExecutableDirectoryPathProviderAction(
                 pathRelatedOperatorsAction.StringlyTypedPathOperatorAction);
-            var secretsDirectoryFilePathProviderAction = services.AddSecretsDirectoryFilePathProviderAction(
+            var secretsDirectoryFilePathProviderAction = services.AddSecretsDirectoryPathProviderAction(
                 organizationProviderAction,
                 pathRelatedOperatorsAction.StringlyTypedPathOperatorAction);
 
             // Level 2.
-            var appSettingsFilePathProviderAction = services.AddDefaultJsonAppSettingsFilePathProviderAction(
-                executableDirectoryPathProviderAction.ExecutableDirectoryPathProviderAction,
-                pathRelatedOperatorsAction.FileNameOperatorAction,
-                pathRelatedOperatorsAction.StringlyTypedPathOperatorAction);
+            var appSettingsFilePathProviderAction = services.AddDefaultJsonAppSettingsFileNameProviderAction(
+                pathRelatedOperatorsAction.FileNameOperatorAction);
 
             // Level 3.
             var databaseConnectionConfigurationFilePathServicesAggregation = services.AddDatabaseConnectionConfigurationFilePathServicesAction(
-                appSettingsFilePathProviderAction.AppSettingsDirectoryPathProviderAction,
-                secretsDirectoryFilePathProviderAction.SecretsDirectoryFilePathProviderAction,
+                appSettingsFilePathProviderAction,
+                secretsDirectoryFilePathProviderAction.SecretsDirectoryPathProviderAction,
                 pathRelatedOperatorsAction.StringlyTypedPathOperatorAction);
 
             // Operations.

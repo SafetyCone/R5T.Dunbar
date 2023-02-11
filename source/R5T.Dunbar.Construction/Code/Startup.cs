@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using R5T.Dacia;
-using R5T.Magyar;
+using R5T.Magyar.Extensions;
 
 using R5T.Dunbar.A001;
 
